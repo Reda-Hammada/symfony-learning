@@ -14,7 +14,11 @@ class HelloController extends AbstractController
     #[Route('/home',name: 'home')]
     public function index(): Response
     {
-       return new Response(implode(' ', $this->message)); 
+       return $this->render('Hello/home.html.twig',
+       [
+         'messages'=>$this->message
+       ]
+      );
     }
 
 
