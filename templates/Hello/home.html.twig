@@ -9,8 +9,8 @@
     <ul>
     {% for message in messages %}
         
-         <li>{{message}}</li>
-        
+         <li>{{message.message}}</li>
+            {{ include('hello/_message.html.twig') }}
     {% endfor %}
 
     </ul>
