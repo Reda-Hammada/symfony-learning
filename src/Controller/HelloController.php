@@ -3,8 +3,9 @@
 namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HelloController 
+class HelloController extends AbstractController
 {    
 
 
@@ -16,10 +17,30 @@ class HelloController
        return new Response(implode(' ', $this->message)); 
     }
 
-    #[Route('/messages/{id}', name: 'message')]
+
+    #[Route('/messages/{id<\d+>?3}', name: 'message')]
     public function show(int $id): Response
-    {   
-       return new Response($this->message[$id]);
+    {    
+      if($id > count($this->message)):
+         
+         return $this->render(
+            'Hello/showmessage.html.twig',
+           [
+            'message' =>  implode(' ', $this->message ),
+           ]
+
+         );
+
+      else:
+         return $this->render(
+            'Hello/showmessage.html.twig',
+           [
+            'message' => $this->message[$id] ,
+           ]
+
+           );
+         
+      endif;
 
     }
 }
