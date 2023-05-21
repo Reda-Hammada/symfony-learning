@@ -7,9 +7,11 @@
   {% if messages|length > 0 %}
     
     <ul>
-    {% for message in messages %}
-        
-         <li>{{message.message}}</li>
+    {% for key,message in messages %}
+            <div>
+                <a href={{ path('message', {id: key}) }}><li>{{ message.message }}</li></a>
+            </div>
+    
             {{ include('hello/_message.html.twig') }}
     {% endfor %}
 
