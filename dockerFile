@@ -1,0 +1,4 @@
+FROM symfony:6.2.10 
+
+COPY . .
+
