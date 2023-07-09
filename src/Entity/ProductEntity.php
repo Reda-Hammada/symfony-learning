@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use App\Repository\ProductEntityRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+
 
 #[ORM\Entity(repositoryClass: ProductEntityRepository::class)]
 class ProductEntity
@@ -76,5 +80,12 @@ class ProductEntity
      {
         $this->quantity = $quantity;
         return $this;
+     }
+
+
+     public static function loadValidator(ClassMetadata $metadata):void
+     {
+        $metadata->addPropertyConstraint('product_name', new NotBlank());
+        
      }
 }   
