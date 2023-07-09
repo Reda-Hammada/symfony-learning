@@ -8,5 +8,13 @@
 
  {{ form(form) }}
 
+ {% if product|length > 0 %}
+<ul>
 
+    <ol>{{ product.getProductName() }}</ol> 
+    <ol>{{  product.price }}</ol> 
+    <ol>{{ product.description }}</ol>
+    <ol>{{  product.quantity }}</ol>
+</ul>
+{% endif %}
 {% endblock %}
